@@ -6,6 +6,7 @@
 //  - заменил if на тернарный оператор где это возможно
 //  - вынес сложные условия в функцию shop_open
 //  - замена if математическими функциями (используем функцию max)
+//  - убраны многоуровневые условия
 
 
 // Cyclomatic Complexity: 1
@@ -26,7 +27,7 @@ bool shop_open(const Shop& shop) {
 // Cyclomatic Complexity: 3
 void visit_shop(const Shop& shop) { // данный метод заменяет логику с 21 - 30 строку и с 39 - 48 в исходном примере
     // постусловие: установлено время после посещения магазина и устанавливаем штраф если посетили закрытый магазин
-    time_fine += !(time <= shop.close_time) ? time - path[0].open_time : 0; // избавились от else во внешнем цикле а if 
+    time_fine += !(time <= shop.close_time) ? time - shop.open_time : 0; // избавились от else во внешнем цикле а if 
         // заменили тернарным оператором
     time = shop_open(shop) ? shop.open_time + shop.service_time : time;
         // избавились от двух вложенных if через тернарный оператор + вынесли проверку условия в функцию
