@@ -119,7 +119,23 @@ def test_exact_set_field():
 # new task -------------------------------------------------------
 
 
-def test_boom_sell():
+def test_boom_sell_creation():
     f = Field(5)
     f.set_random_pos_state(BoomCell(), 1)
     assert f.get_state_count(BoomCell) == 1
+
+
+def test_boom_cell_builder():
+    # note: numeration from 1:1
+    state = [
+        "   o ",
+        " #   ",
+        "o #  ",
+        "#  # ",
+        "#    ",
+    ]
+    f = FieldFactory.build("\n".join(state), {" ": DiedCell, "#": AliveCell, "o": BoomCell})
+    positions = f.get_all_state_pos(BoomCell)
+    assert(len(positions) == 2)
+    assert([1, 4] in positions)
+    assert([3, 1] in positions)
