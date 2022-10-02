@@ -75,6 +75,18 @@ class DiedCell(NotEmptyCell):
         return " "
 
 
+class BoomCell(NotEmptyCell):
+    def __init__(self):
+        super(Cell).__init__()
+
+    def get_symbol(self):
+        return "o"
+
+
+class NoPlaceException(BaseException): # Added exception
+    pass
+
+
 class Field:
     def __init__(self, size: int):
         last_idx = size + 1
@@ -85,7 +97,7 @@ class Field:
     def __get_random_died_pos(self):
         all_died_cell_pos = self.get_all_state_pos(DiedCell)
         if len(all_died_cell_pos) == 0:
-            raise "No palse"
+            raise NoPlaceException()
         pos = randint(0, len(all_died_cell_pos) - 1)
         return all_died_cell_pos[pos]
 

@@ -1,5 +1,5 @@
 from random import randint
-from app import DiedCell, EmptyCell, Field, AliveCell, FieldFactory, NoPlaceException
+from app1 import DiedCell, EmptyCell, Field, AliveCell, FieldFactory, BoomCell, NoPlaceException
 import pytest
 
 
@@ -115,3 +115,11 @@ def test_exact_set_field():
     f.field[4][4] = AliveCell()
     assert(f.get_state_count(AliveCell) == 4)
     assert(f.get_state_count(DiedCell) == 5 * 5 - 4)
+
+# new task -------------------------------------------------------
+
+
+def test_boom_sell():
+    f = Field(5)
+    f.set_random_pos_state(BoomCell(), 1)
+    assert f.get_state_count(BoomCell) == 1
