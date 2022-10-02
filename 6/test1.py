@@ -139,3 +139,23 @@ def test_boom_cell_builder():
     assert(len(positions) == 2)
     assert([1, 4] in positions)
     assert([3, 1] in positions)
+
+
+def test_boom_effect():
+    state = [
+        "   o ",
+        " #   ",
+        "o #  ",
+        "#  # ",
+        "#    ",
+    ]
+    next_state = [
+        "     ",
+        "     ",
+        "  ## ",
+        "  #  ",
+        " #   ",
+    ]
+    f = FieldFactory.build("\n".join(state), {" ": DiedCell, "#": AliveCell, "o": BoomCell})
+    f.next_state()
+    assert(str(f) == "\n".join(next_state))

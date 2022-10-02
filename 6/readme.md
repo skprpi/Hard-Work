@@ -21,14 +21,54 @@ def test_btest_boom_sell_creationoom_sell():
 ```
 
 * Чтобы в будующем проверить специфическую часть логики в начале нужно научить конструировать правильное поле с данным состоянием.
-Хорошо, что я сделал достаточно гибким интерфейс и это можно делать на лету без изменения основного кода
+Хорошо, что я сделал достаточно гибким интерфейс и это можно делать на лету без изменения основного кода. В итоге получим
+следующий тест
 
 ```
+# test1.py
 
+def test_boom_cell_builder():
+    # note: numeration from 1:1
+    state = [
+        "   o ",
+        " #   ",
+        "o #  ",
+        "#  # ",
+        "#    ",
+    ]
+    f = FieldFactory.build("\n".join(state), {" ": DiedCell, "#": AliveCell, "o": BoomCell})
+    positions = f.get_all_state_pos(BoomCell)
+    assert(len(positions) == 2)
+    assert([1, 4] in positions)
+    assert([3, 1] in positions)
 ```
 
-* Данная клетка на следующем ходу должна уничтожать все живые клетки, поэтому добавим проверку на данную часть логики
+* Данная клетка на следующем ходу должна уничтожать все живые клетки вокруг, поэтому добавим проверку на данную часть логики
 
+```
+# test1.py
+
+def test_boom_effect():
+    state = [
+        "   o ",
+        " #   ",
+        "o #  ",
+        "#  # ",
+        "#    ",
+    ]
+    next_state = [
+        "     ",
+        "     ",
+        "  ## ",
+        "  #  ",
+        " #   ",
+    ]
+    f = FieldFactory.build("\n".join(state), {" ": DiedCell, "#": AliveCell, "o": BoomCell})
+    f.next_state()
+    assert(str(f) == "\n".join(next_state))
+```
+
+### Итоги
 
 ## Задача 1
 

@@ -37,6 +37,7 @@ class EmptyCell(Cell):
 
     def calc_neighors(self, neighbors: list):
         self.neighors = 0
+        self.boom_neighors = 0
 
     def permute(self):
         return EmptyCell()
@@ -46,15 +47,21 @@ class NotEmptyCell(Cell):
     def __init__(self):
         super(Cell).__init__()
 
+    def __calc_neighors(self, instance, neighbors: list):
+        assert(len(neighbors) == 8)
+        neib = 0
+        for cell in neighbors:
+            if isinstance(cell, instance):
+                neib += 1
+        return neib
+
     def calc_neighors(self, neighbors: list):
         assert(len(neighbors) == 8)
-        self.neighors = 0
-        for cell in neighbors:
-            if isinstance(cell, AliveCell):
-                self.neighors += 1
+        self.neighors = self.__calc_neighors(AliveCell, neighbors)
+        self.boom_neighors = self.__calc_neighors(BoomCell, neighbors)
 
     def permute(self):
-        if 2 <= self.neighors <= 3:
+        if self.boom_neighors == 0 and 2 <= self.neighors <= 3:
             return AliveCell()
         return DiedCell()
 
@@ -81,6 +88,9 @@ class BoomCell(NotEmptyCell):
 
     def get_symbol(self):
         return "o"
+
+    def permute(self):
+        return DiedCell()
 
 
 class NoPlaceException(BaseException): # Added exception
