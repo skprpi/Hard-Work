@@ -4,7 +4,13 @@
 
 ### Оригиналы
 
+* https://github.com/skprpi/Hard-Work/blob/main/3/app_after.py
+* https://github.com/skprpi/Hard-Work/blob/main/3/test_after.py
+
 ### После изменения
+
+* https://github.com/skprpi/Hard-Work/blob/main/6/app1.py
+* https://github.com/skprpi/Hard-Work/blob/main/6/test1.py
 
 ### Коротко о задаче
 
@@ -92,6 +98,9 @@ def test_boom_effect():
 * их нет, писал код с нуля по предложенной технике
 
 ### После изменения
+
+* https://github.com/skprpi/Hard-Work/blob/main/6/app2.py
+* https://github.com/skprpi/Hard-Work/blob/main/6/test2.py
 
 ### Коротко о задаче
 
