@@ -1,10 +1,12 @@
 # Отчет
 
-## Начальное состояние
-
 ### Оригиналы
 
+* https://github.com/skprpi/Hard-Work/blob/main/7/initial_state.cpp
+
 ### После изменения
+
+* https://github.com/skprpi/Hard-Work/blob/main/7/result.cpp
 
 ### Постановка задачи
 
