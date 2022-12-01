@@ -26,11 +26,11 @@ class Scene(ABC):
 
 class PlayScene(Scene):
     def create_player(self, window):
-        view = RectangleUnitView((100, 100), 50, 50, ColorManager.RED.value, window)
+        view = RectangleUnitView((100, 100), 20, 20, ColorManager.RED.value, window)
         return Player(move_by_keyboard, view)
 
     def create_zombee(self, window, player):
-        view = RectangleUnitView((200, 200), 50, 50, ColorManager.GREEN.value, window)
+        view = RectangleUnitView((200, 200), 20, 20, ColorManager.GREEN.value, window)
         return Zombee(get_target_mover(player, 5000000), view)
 
     def __init__(self, window, window_info):
@@ -56,4 +56,3 @@ class PlayScene(Scene):
         self.player.move(4)
         self.zombee.move(2)
 
-        
